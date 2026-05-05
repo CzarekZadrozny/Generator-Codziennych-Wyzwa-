@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wyzwanie Dnia | Daily Challenge</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>✨ Wyzwanie Dnia</h1>
+            <p id="timer"></p>
+            <br>
+        </header>
+
+        <main>
+            
+            <div id="draw-section">
+                <button id="draw-btn" class="btn-primary">Wylosuj wyzwanie!</button>
+            </div>
+
+            <div id="challenge-display" class="hidden">
+                <div class="challenge-box">
+                    <p id="challenge-text">Twoje wyzwanie pojawi się tutaj...</p>
+                </div>
+                
+                <div class="action-buttons">
+                    <button id="complete-btn" class="btn-success">Ukończone! ✅</button>
+                </div>
+                <p id="congrats-msg" class="hidden">Gratulacje! Wyzwanie wykonane 🎉</p>
+            </div>
+        </main>
+
+        <section class="history-section">
+            <button id="toggle-history" class="btn-secondary">Pokaż historię</button>
+            <div id="history-list-container" class="hidden">
+                <h3>Ukończone wyzwania:</h3>
+                <ul id="history-list">
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

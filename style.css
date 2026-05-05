@@ -1,0 +1,144 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #2d3436;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    animation: fadeIn 0.8s ease-out;
+}
+
+h1 {
+    font-weight: 800;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #2d3436;
+}
+
+main {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(10px);
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.challenge-box {
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 15px;
+    background: #f9f9f9;
+    min-height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#challenge-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.completed-text {
+    text-decoration: underline #00b894;
+    color: #00b894;
+    transition: all 0.5s ease;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.btn-primary {
+    background: #6c5ce7;
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+}
+
+.btn-primary:hover {
+    background: #a29bfe;
+    transform: translateY(-2px);
+}
+
+.btn-success {
+    background: #00b894;
+    color: white;
+    padding: 12px 25px;
+}
+
+.btn-success:hover {
+    background: #55efc4;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #636e72;
+    padding: 10px 20px;
+    border: 1px solid #dfe6e9;
+    font-size: 0.9rem;
+}
+
+.btn-secondary:hover {
+    background: #dfe6e9;
+}
+
+.history-section {
+    margin-top: 20px;
+}
+
+#history-list {
+    list-style: none;
+    margin-top: 15px;
+    text-align: left;
+    padding: 10px;
+}
+
+#history-list li {
+    background: white;
+    margin-bottom: 8px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    border-left: 4px solid #00b894;
+    animation: slideIn 0.3s ease-out;
+}
+
+#congrats-msg {
+    color: #00b894;
+    font-weight: bold;
+    margin-top: 15px;
+}
+.hidden {
+    display: none;
+}   
+
+@media (max-width: 480px) {
+    h1 { font-size: 1.8rem; }
+    .card { padding: 25px; }
+    .btn-primary { width: 100%; }
+}
