@@ -23,10 +23,13 @@ const wyzwania = [
 
     sprawdzenieDnia();
 
+    //wywoływanie przycisków
+
     document.getElementById("draw-btn").addEventListener("click",losujWyzwanie);
     document.getElementById("complete-btn").addEventListener("click",ukonczWyzwanie);
     document.getElementById("toggle-history").addEventListener("click",pokazHistorie);
 
+    //funkcja odpowiedzialna za losowanie wyzwania i dodanie go do localStorage
     function losujWyzwanie() {
         const randomIndex = Math.floor(Math.random() * wyzwania.length);
         const wyzwanie = wyzwania[randomIndex];
@@ -44,6 +47,7 @@ const wyzwania = [
         localStorage.setItem("aktualneWyzwanie", JSON.stringify(wyzwanie));    
     }
 
+    //funkcja odpowiedzialna za oznaczenie wyzwania jako wykonanego, dodanie go do historii i zapisanie w localStorage
     function ukonczWyzwanie() {
         document.getElementById("challenge-text").classList.add("completed-text");
         document.getElementById("congrats-msg").classList.remove("hidden");
@@ -58,24 +62,31 @@ const wyzwania = [
         localStorage.setItem("historiaWyzwan", JSON.stringify(historia));
 
         document.getElementById("complete-btn").disabled = true;
+
+        localStorage.setItem("czyUkonczoneDzisiaj", new Date().toLocaleDateString());
+        localStorage.removeItem("aktualneWyzwanie");
     }
     }
 
-    function sprawdzenieDnia() {
-        const dzisiaj = new Date().toLocaleDateString();
-        const dataOstatniegoLosowania = localStorage.getItem("ostatnieLosowanie");
+    //funkcja sprawdzająca, czy użytkownik już wylosował wyzwanie na dziś i odpowiednio blokująca przyciski
+function sprawdzenieDnia() {
+    const dzisiaj = new Date().toLocaleDateString();
+    const dataOstatniegoLosowania = localStorage.getItem("ostatnieLosowanie");
+    const dataOstatniegoUkonczenia = localStorage.getItem("czyUkonczoneDzisiaj");
 
-        if (dataOstatniegoLosowania === dzisiaj) {
-            document.getElementById("draw-btn").disabled = true;
-            document.getElementById("complete-btn").disabled = true;
-            document.getElementById("timer").textContent = "Wyzwanie już wylosowane na dziś!";
-            alert("Już wylosowałeś wyzwanie na dziś!");
-        } else {
-            document.getElementById("draw-btn").disabled = false;
-            document.getElementById("complete-btn").disabled = false;
-        }
+    // Jeśli wylosowano dzisiaj - zablokuj losowanie
+    if (dataOstatniegoLosowania === dzisiaj) {
+        document.getElementById("draw-btn").disabled = true;
     }
 
+    // Jeśli ukończono dzisiaj - zablokuj przycisk ukończenia
+    if (dataOstatniegoUkonczenia === dzisiaj) {
+        document.getElementById("complete-btn").disabled = true;
+        document.getElementById("timer").textContent = "Wylosowano juz dzisiaj zadanie! Wróc jutro.";
+    }
+}
+
+    //funkcja odpowiedzialna za pokazywanie i ukrywanie historii wyzwań oraz załadowanie jej z localStorage
     var clickCount = 1;
     function pokazHistorie() {
         clickCount++;
@@ -83,6 +94,8 @@ const wyzwania = [
             document.getElementById("history-list-container").classList.add("hidden");
         } else {
             document.getElementById("history-list-container").classList.remove("hidden");
+
+            document.getElementById("history-list").innerHTML = "";
         
             const historia = JSON.parse(localStorage.getItem("historiaWyzwan")) || [];
 

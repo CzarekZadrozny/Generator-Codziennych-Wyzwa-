@@ -1,28 +1,106 @@
+/* --- BAZOWE USTAWIENIA --- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+a {
+    text-decoration: none;
+    color: black;
+}
 
 body {
     font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background: #f5f7fa;
     min-height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column; /* Zmiana układu na kolumnowy */
     color: #2d3436;
-    padding: 20px;
 }
 
+/* --- NOWY NAGŁÓWEK --- */
+.site-header {
+    background: linear-gradient(90deg, #e4007c 0%, #ff5e62 100%);
+    padding: 0 40px;
+    color: white;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.logo-bars {
+    letter-spacing: -2px;
+    font-weight: 900;
+}
+
+.site-nav {
+    display: flex;
+    gap: 30px;
+}
+
+.site-nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s ease; /* Zmienione z 'opacity' na 'all', żeby kolor tła też płynnie przechodził */
+    padding: 8px 15px; /* Dodany padding, żeby tło miało ładny kształt */
+    border-radius: 4px;
+}
+
+.site-nav a:hover {
+    background: white; /* Białe tło po najechaniu */
+    color: #e4007c;    /* Tekst zmienia kolor na kolor nagłówka (ciemny róż) */
+    opacity: 1;        /* Upewniamy się, że nie ma przezroczystości */
+}
+
+.site-nav a.active-nav {
+    background: white;
+    color: #2d3436;
+    padding: 5px 15px;
+    border-radius: 4px;
+}
+
+.btn-signin {
+    background: white;
+    color: #2d3436;
+    padding: 10px 25px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.btn-signin:hover {
+    background: #f1f2f6;
+    transform: none;
+}
+
+/* --- ORYGINALNA APLIKACJA WYZWANIA DNIA --- */
 .container {
     width: 100%;
     max-width: 500px;
     text-align: center;
     animation: fadeIn 0.8s ease-out;
+    margin: 60px auto; /* Centruje aplikację pomiędzy headerem a footerem */
+    flex-grow: 1; /* Pozwala kontenerowi zająć resztę miejsca na ekranie */
+    padding: 20px;
 }
 
-h1 {
+.app-header h1 {
     font-weight: 800;
     font-size: 2.5rem;
     margin-bottom: 10px;
@@ -30,11 +108,10 @@ h1 {
 }
 
 main {
-    background: rgba(255, 255, 255, 0.9);
+    background: white; /* Zmiana z przezroczystości na pełny biały dla lepszego kontrastu */
     padding: 40px;
     border-radius: 24px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    backdrop-filter: blur(10px);
     margin-bottom: 20px;
     transition: transform 0.3s ease;
 }
@@ -80,7 +157,7 @@ button {
     box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
 }
 
-.btn-primary:hover {
+.btn-primary:hover:not(:disabled) {
     background: #a29bfe;
     transform: translateY(-2px);
 }
@@ -91,7 +168,7 @@ button {
     padding: 12px 25px;
 }
 
-.btn-success:hover {
+.btn-success:hover:not(:disabled) {
     background: #55efc4;
 }
 
@@ -105,6 +182,11 @@ button {
 
 .btn-secondary:hover {
     background: #dfe6e9;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 .history-section {
@@ -125,7 +207,6 @@ button {
     border-radius: 8px;
     font-size: 0.9rem;
     border-left: 4px solid #00b894;
-    animation: slideIn 0.3s ease-out;
 }
 
 #congrats-msg {
@@ -137,8 +218,388 @@ button {
     display: none;
 }   
 
+/* --- NOWA STOPKA --- */
+.site-footer {
+    background-color: #2b1154; /* Ciemny fiolet */
+    color: white;
+    position: relative;
+    padding-top: 100px; /* Miejsce na nachodzący baner */
+}
+
+/* Nachodzący Baner */
+.footer-banner {
+    background: linear-gradient(90deg, #bcf5c3 0%, #faebb4 100%);
+    color: #2d3436;
+    border-radius: 12px;
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 900px;
+    width: 90%;
+    position: absolute;
+    top: -45px; /* Wyciąga baner ponad stopkę */
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.banner-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.banner-action {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: 600;
+}
+
+.btn-get-started {
+    background: #e67e22; /* Pomarańczowy/żółty */
+    color: white;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-weight: 600;
+}
+
+/* Główna treść stopki */
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.footer-logo-section .logo-bars-colors {
+    color: transparent;
+    background: linear-gradient(90deg, #ff4d4d, #e81cff, #3498db);
+    -webkit-background-clip: text;
+    letter-spacing: -2px;
+    font-weight: 900;
+}
+
+.footer-links {
+    display: flex;
+    gap: 80px;
+}
+
+.link-column h4 {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.link-column ul {
+    list-style: none;
+}
+
+.link-column ul li {
+    margin-bottom: 12px;
+}
+
+.link-column ul li a {
+    color: #b2bec3;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.3s;
+}
+
+.link-column ul li a:hover {
+    color: white;
+}
+
+.footer-subscribe {
+    max-width: 300px;
+}
+
+.footer-subscribe h4 {
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.social-icons a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem;
+    opacity: 0.7;
+}
+
+.social-icons a:hover {
+    opacity: 1;
+}
+
+.footer-subscribe p {
+    color: #b2bec3;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.subscribe-form {
+    display: flex;
+    height: 40px;
+}
+
+.subscribe-form input {
+    flex-grow: 1;
+    padding: 0 15px;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+    font-family: inherit;
+    font-size: 0.85rem;
+}
+
+.subscribe-form button {
+    background: #e67e22;
+    color: white;
+    border-radius: 0 4px 4px 0;
+    padding: 0 20px;
+    font-size: 0.85rem;
+}
+
+/* Dolny pasek */
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: #b2bec3;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.bottom-links {
+    display: flex;
+    gap: 20px;
+}
+
+.bottom-links a {
+    color: #b2bec3;
+    text-decoration: none;
+}
+
+.bottom-links a:hover {
+    color: white;
+}
+
+/* --- RESPONSYWNOŚĆ --- */
+@media (max-width: 900px) {
+    .site-header { padding: 0 20px; }
+    .site-nav { display: none; /* Ukrywamy nav na tel dla uproszczenia */ }
+    
+    .footer-banner {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+    }
+    
+    .footer-links {
+        gap: 40px;
+        flex-wrap: wrap;
+    }
+}
 @media (max-width: 480px) {
-    h1 { font-size: 1.8rem; }
-    .card { padding: 25px; }
+    .app-header h1 { font-size: 1.8rem; }
+    main { padding: 25px; }
     .btn-primary { width: 100%; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+    .bottom-links { flex-wrap: wrap; justify-content: center; }
+}
+/* --- STYLE STRONY LOGOWANIA / REJESTRACJI --- */
+.auth-page {
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 1000px;
+    padding: 20px;
+}
+
+.auth-card {
+    background: white;
+    border-radius: 24px;
+    border: 1px solid #dfe6e9;
+    display: flex;
+    padding: 60px;
+    gap: 40px;
+    min-height: 600px;
+}
+
+.auth-form-section {
+    flex: 1;
+    text-align: left;
+}
+
+.auth-logo-circle {
+    width: 45px;
+    height: 45px;
+    background-color: #d1d4d7;
+    border-radius: 50%;
+    margin-bottom: 25px;
+}
+
+.auth-form-section h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #2d3436;
+}
+
+.auth-subtitle {
+    color: #636e72;
+    margin-bottom: 40px;
+    font-size: 0.95rem;
+}
+
+.auth-subtitle a {
+    color: #2d3436;
+    font-weight: 600;
+}
+
+/* Formularz */
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    color: #636e72;
+}
+
+.form-group input {
+    border: 1px solid #dfe6e9;
+    border-radius: 12px;
+    padding: 12px 15px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #b2bec3;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.form-hint {
+    font-size: 0.8rem;
+    color: #636e72;
+    margin-bottom: 20px;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    margin-bottom: 40px;
+}
+
+/* Stopka formularza */
+.form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.link-secondary {
+    color: #2d3436;
+    text-decoration: underline;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.btn-create-account {
+    background-color: #c4c4c4; /* Szary jak na wizualizacji */
+    color: white;
+    padding: 12px 35px;
+    border-radius: 25px;
+    font-size: 1rem;
+    border: none;
+}
+
+/* Sekcja ilustracji */
+.auth-illustration-section {
+    flex: 0.8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.abstract-shape {
+    width: 100%;
+    max-width: 300px;
+}
+
+/* Dolna nawigacja pod kartą */
+.auth-bottom-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    padding: 0 10px;
+    color: #636e72;
+    font-size: 0.8rem;
+}
+
+.bottom-helper-links {
+    display: flex;
+    gap: 20px;
+}
+
+.bottom-helper-links a {
+    color: #636e72;
+    text-decoration: none;
+}
+
+/* Responsywność */
+@media (max-width: 850px) {
+    .auth-card {
+        flex-direction: column;
+        padding: 40px 20px;
+    }
+    .auth-illustration-section {
+        display: none; /* Ukrywamy ilustrację na małych ekranach */
+    }
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
 }

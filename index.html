@@ -8,15 +8,32 @@
 </head>
 <body>
 
+    <!-- NOWY NAGŁÓWEK -->
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo">
+                <span class="logo-bars">|||</span> SiteLogo
+            </div>
+            <nav class="site-nav">
+                <a href="#">About</a>
+                <a href="#">Features</a>
+                <a href="#">Pricing</a>
+                <a href="#">Gallery</a>
+                <a href="#">Team</a>
+            </nav>
+            <button class="btn-signin"><a href="auth.html">Sign In</a></button>
+        </div>
+    </header>
+
+    <!-- GŁÓWNA APLIKACJA -->
     <div class="container">
-        <header>
-            <h1> Wyzwanie Dnia</h1>
+        <div class="app-header">
+            <h1>Wyzwanie Dnia</h1>
             <p id="timer"></p>
             <br>
-        </header>
+        </div>
 
         <main>
-            
             <div id="draw-section">
                 <button id="draw-btn" class="btn-primary">Wylosuj wyzwanie!</button>
             </div>
@@ -31,6 +48,7 @@
                 </div>
                 <p id="congrats-msg" class="hidden">Gratulacje! Wyzwanie wykonane 🎉</p>
             </div>
+            
         </main>
 
         <section class="history-section">
@@ -42,6 +60,73 @@
             </div>
         </section>
     </div>
+
+    <footer class="site-footer">
+        <div class="footer-banner">
+            <h2 class="banner-title">Take good design today</h2>
+            <div class="banner-action">
+                <span>Let's do it! —</span>
+                <button class="btn-get-started">Get started</button>
+            </div>
+        </div>
+
+        <div class="footer-content">
+            <div class="footer-logo-section">
+                <div class="logo">
+                    <span class="logo-bars-colors">|||</span> SiteLogo
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <div class="link-column">
+                    <h4>Use Cases</h4>
+                    <ul>
+                        <li><a href="#">Web-designers</a></li>
+                        <li><a href="#">Marketers</a></li>
+                        <li><a href="#">Small Business</a></li>
+                        <li><a href="#">Website Builder</a></li>
+                    </ul>
+                </div>
+                <div class="link-column">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Teams</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-subscribe">
+                <h4>Let's do it!</h4>
+                <div class="social-icons">
+                    <a href="#">f</a>
+                    <a href="#">t</a>
+                    <a href="#">in</a>
+                    <a href="#">ig</a>
+                </div>
+                <h4>Subscribe</h4>
+                <p>Subscribe to stay tuned for new web design<br>and latest updates. Let's do it!</p>
+                <form class="subscribe-form" onsubmit="event.preventDefault();">
+                    <input type="email" placeholder="Enter your email Address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Sales and Refunds</a>
+                <a href="#">Legal</a>
+                <a href="#">Site Map</a>
+            </div>
+            <p class="copyright">© 2021 All Rights Reserved</p>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
