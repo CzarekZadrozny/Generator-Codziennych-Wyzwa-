@@ -21,13 +21,14 @@ const wyzwania = [
     "Poćwicz uważne oddychanie przez 3 minuty"
     ];
 
-    sprawdzenieDnia();
-
-    //wywoływanie przycisków
-
-    document.getElementById("draw-btn").addEventListener("click",losujWyzwanie);
-    document.getElementById("complete-btn").addEventListener("click",ukonczWyzwanie);
-    document.getElementById("toggle-history").addEventListener("click",pokazHistorie);
+ document.addEventListener("DOMContentLoaded", function() {
+    if (window.location.href.includes("index.html")) {
+        console.log("Strona załadowana");
+        sprawdzenieDnia();
+        sprawdzCzyZalogowany();
+    }
+});
+    
 
     //funkcja odpowiedzialna za losowanie wyzwania i dodanie go do localStorage
     function losujWyzwanie() {
@@ -105,4 +106,77 @@ function sprawdzenieDnia() {
                 document.getElementById("history-list").appendChild(li);
             });
         }
+    }
+
+    function toggleLogin() {
+        document.getElementById("register-view").style.display = "none";
+        document.getElementById("login-view").style.display = "block";
+    }
+    function toggleRegister() {
+        document.getElementById("login-view").style.display = "none";
+        document.getElementById("register-view").style.display = "block";
+    }
+        function showPassword() {
+       x = document.getElementById("password");
+       if (x.type === "password") {
+        x.type = "text";
+       } else {
+        x.type = "password";
+       }
+       y = document.getElementById("confirm-password");
+       if (y.type === "password") {
+        y.type = "text";
+       } else {
+        y.type = "password";
+       }
+    }
+
+    function rejestracjaUzytkownika() {
+        const firstname = document.getElementById("firstname").value;
+        const lastname = document.getElementById("lastname").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirm-password").value;
+
+        if (password !== confirmPassword) {
+            alert("Hasła nie są takie same!");
+            return;
+        }
+        else {
+            const userData = {
+                firstname: firstname,
+                lastname: lastname,
+                email: email,
+                password: password
+            };
+            localStorage.setItem("uzytkownik", JSON.stringify(userData));
+            alert("Konto zostało utworzone pomyślnie!");
+            toggleLogin();
+        }
+    }
+    function zaloguj() {
+        const email = document.getElementById("loginEmail").value;
+        const password = document.getElementById("loginPassword").value;
+        const storedUser = JSON.parse(localStorage.getItem("uzytkownik"));
+
+        if (storedUser && storedUser.email === email && storedUser.password === password) {
+            alert("Zalogowano pomyślnie!");
+            window.location.href = "index.html";
+            let czyZalogowany = true;
+            localStorage.setItem("czyZalogowany", czyZalogowany);
+        } else {
+            alert("Nieprawidłowy email lub hasło!");
+        }
+    }
+
+    function sprawdzCzyZalogowany() {
+        const czyZalogowany = JSON.parse(localStorage.getItem("czyZalogowany"));
+        if (czyZalogowany) {
+            document.getElementById("SignInBtn").innerHTML = "<a href='index.html' onclick='wyloguj()'>Sign Out</a>";
+        }
+    }
+
+    function wyloguj() {
+        alert("Wylogowano pomyślnie!");
+        localStorage.removeItem("czyZalogowany");
     }

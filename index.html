@@ -21,7 +21,7 @@
                 <a href="#">Gallery</a>
                 <a href="#">Team</a>
             </nav>
-            <button class="btn-signin"><a href="auth.html">Sign In</a></button>
+            <button class="btn-signin" id="SignInBtn"><a href="auth.html">Sign In</a></button>
         </div>
     </header>
 
@@ -35,7 +35,7 @@
 
         <main>
             <div id="draw-section">
-                <button id="draw-btn" class="btn-primary">Wylosuj wyzwanie!</button>
+                <button id="draw-btn" class="btn-primary" onclick="losujWyzwanie()">Wylosuj wyzwanie!</button>
             </div>
 
             <div id="challenge-display" class="hidden">
@@ -44,7 +44,7 @@
                 </div>
                 
                 <div class="action-buttons">
-                    <button id="complete-btn" class="btn-success">Ukończone! ✅</button>
+                    <button id="complete-btn" class="btn-success" onclick="ukonczWyzwanie()">Ukończone! ✅</button>
                 </div>
                 <p id="congrats-msg" class="hidden">Gratulacje! Wyzwanie wykonane 🎉</p>
             </div>
@@ -52,7 +52,7 @@
         </main>
 
         <section class="history-section">
-            <button id="toggle-history" class="btn-secondary">Pokaż historię</button>
+            <button id="toggle-history" class="btn-secondary" onclick="pokazHistorie()">Pokaż historię</button>
             <div id="history-list-container" class="hidden">
                 <h3>Ukończone wyzwania:</h3>
                 <ul id="history-list">
