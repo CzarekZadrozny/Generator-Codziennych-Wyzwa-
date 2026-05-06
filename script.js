@@ -21,7 +21,7 @@ const wyzwania = [
     "Poćwicz uważne oddychanie przez 3 minuty"
     ];
 
-    // sprawdzenieDnia();
+    sprawdzenieDnia();
 
     document.getElementById("draw-btn").addEventListener("click",losujWyzwanie);
     document.getElementById("complete-btn").addEventListener("click",ukonczWyzwanie);
@@ -39,7 +39,7 @@ const wyzwania = [
         const dzisiaj = new Date().toLocaleDateString();
         localStorage.setItem("ostatnieLosowanie", dzisiaj);
 
-        // document.getElementById("draw-btn").disabled = true;
+        document.getElementById("draw-btn").disabled = true;
 
         localStorage.setItem("aktualneWyzwanie", JSON.stringify(wyzwanie));    
     }
@@ -56,6 +56,8 @@ const wyzwania = [
         
         historia.push(wpis);
         localStorage.setItem("historiaWyzwan", JSON.stringify(historia));
+
+        document.getElementById("complete-btn").disabled = true;
     }
     }
 
@@ -65,9 +67,12 @@ const wyzwania = [
 
         if (dataOstatniegoLosowania === dzisiaj) {
             document.getElementById("draw-btn").disabled = true;
+            document.getElementById("complete-btn").disabled = true;
             document.getElementById("timer").textContent = "Wyzwanie już wylosowane na dziś!";
+            alert("Już wylosowałeś wyzwanie na dziś!");
         } else {
             document.getElementById("draw-btn").disabled = false;
+            document.getElementById("complete-btn").disabled = false;
         }
     }
 
