@@ -1,25 +1,25 @@
 const wyzwania = [
-    "Zrób 15 pompek",
-    "Napisz komuś miły komentarz lub wiadomość",
-    "Spędź godzinę bez telefonu i komputera",
-    "Wypij dziś 2 litry wody",
-    "Przeczytaj 10 stron książki",
-    "Idź na 20-minutowy spacer",
-    "Naucz się 5 nowych słówek w obcym języku",
-    "Zjedz dziś przynajmniej jedno warzywo do każdego posiłku",
-    "Uporządkuj jedną szufladę lub biurko",
-    "Medytuj lub siedź w ciszy przez 5 minut",
-    "Zrób listę 3 rzeczy, za które jesteś dziś wdzięczny",
-    "Rozciągaj się przez 10 minut",
-    "Nie jedz dziś słodyczy",
-    "Posłuchaj nowego gatunku muzycznego",
-    "Zrób porządny backup swoich zdjęć",
-    "Uśmiechnij się do nieznajomej osoby",
-    "Przygotuj zdrowy posiłek od podstaw",
-    "Zadzwoń do kogoś bliskiego, z kim dawno nie rozmawiałeś",
-    "Zaplanuj jutrzejszy dzień wieczorem",
-    "Poćwicz uważne oddychanie przez 3 minuty"
-    ];
+    { nazwa: "Zrób 15 pompek", kategoria: "fitness", poziom: "łatwy" },
+    { nazwa: "Napisz komuś miły komentarz lub wiadomość", kategoria: "social", poziom: "średni" },
+    { nazwa: "Spędź godzinę bez telefonu i komputera", kategoria: "wellness", poziom: "trudny" },
+    { nazwa: "Wypij dziś 2 litry wody", kategoria: "health", poziom: "łatwy" },
+    { nazwa: "Przeczytaj 10 stron książki", kategoria: "learning", poziom: "średni" },
+    { nazwa: "Idź na 20-minutowy spacer", kategoria: "fitness", poziom: "łatwy" },
+    { nazwa: "Naucz się 5 nowych słówek w obcym języku", kategoria: "learning", poziom: "średni" },
+    { nazwa: "Zjedz dziś przynajmniej jedno warzywo do każdego posiłku", kategoria: "health", poziom: "łatwy" },
+    { nazwa: "Uporządkuj jedną szufladę lub biurko", kategoria: "wellness", poziom: "średni" },
+    { nazwa: "Medytuj lub siedź w ciszy przez 5 minut", kategoria: "wellness", poziom: "średni" },
+    { nazwa: "Zrób listę 3 rzeczy, za które jesteś dziś wdzięczny", kategoria: "social", poziom: "średni" },
+    { nazwa: "Rozciągaj się przez 10 minut", kategoria: "fitness", poziom: "łatwy" },
+    { nazwa: "Nie jedz dziś słodyczy", kategoria: "health", poziom: "łatwy" },
+    { nazwa: "Posłuchaj nowego gatunku muzycznego", kategoria: "social", poziom: "średni" },
+    { nazwa: "Zrób porządny backup swoich zdjęć", kategoria: "wellness", poziom: "średni" },
+    { nazwa: "Uśmiechnij się do nieznajomej osoby", kategoria: "social", poziom: "średni" },
+    { nazwa: "Przygotuj zdrowy posiłek od podstaw", kategoria: "health", poziom: "średni" },
+    { nazwa: "Zadzwoń do kogoś bliskiego, z kim dawno nie rozmawiałeś", kategoria: "social", poziom: "średni" },
+    { nazwa: "Zaplanuj jutrzejszy dzień wieczorem", kategoria: "wellness", poziom: "średni" },
+    { nazwa: "Poćwicz uważne oddychanie przez 3 minuty", kategoria: "wellness", poziom: "średni" }
+];
 
  document.addEventListener("DOMContentLoaded", function() {
     if (window.location.href.includes("index.html")) {
@@ -34,7 +34,9 @@ const wyzwania = [
     function losujWyzwanie() {
         const randomIndex = Math.floor(Math.random() * wyzwania.length);
         const wyzwanie = wyzwania[randomIndex];
-        document.getElementById("challenge-text").textContent = wyzwanie;
+        document.getElementById("challenge-text").textContent = wyzwanie.nazwa;
+        document.getElementById("challenge-category").textContent = wyzwanie.kategoria;
+        document.getElementById("challenge-difficulty").textContent = wyzwanie.poziom;
         document.getElementById("challenge-display").classList.remove("hidden");
 
         document.getElementById("challenge-text").classList.remove("completed-text");
@@ -57,7 +59,12 @@ const wyzwania = [
     if (aktualne) {
         const historia = JSON.parse(localStorage.getItem("historiaWyzwan")) || [];
         
-        const wpis = `${new Date().toLocaleDateString()}: ${aktualne}`;
+        const wpis = {
+            data: new Date().toLocaleDateString(),
+            nazwa: aktualne.nazwa,
+            kategoria: aktualne.kategoria,
+            poziom: aktualne.poziom
+        }
         
         historia.push(wpis);
         localStorage.setItem("historiaWyzwan", JSON.stringify(historia));
@@ -102,7 +109,7 @@ function sprawdzenieDnia() {
 
             historia.forEach(wyzwanie => {
                 const li = document.createElement("li");
-                li.textContent = wyzwanie;
+                li.innerHTML = `<p>${wyzwanie.data}: ${wyzwanie.nazwa}</p><p>kategoria: ${wyzwanie.kategoria}, trudność: ${wyzwanie.poziom}</p>`;
                 document.getElementById("history-list").appendChild(li);
             });
         }
@@ -179,4 +186,11 @@ function sprawdzenieDnia() {
     function wyloguj() {
         alert("Wylogowano pomyślnie!");
         localStorage.removeItem("czyZalogowany");
+    }
+
+    function wyczyscHistorie() {
+        if (confirm("Czy na pewno chcesz wyczyścić historię?")) {
+            localStorage.removeItem("historiaWyzwan");
+            document.getElementById("history-list").innerHTML = "";
+        }
     }

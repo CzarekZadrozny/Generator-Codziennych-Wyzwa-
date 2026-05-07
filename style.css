@@ -603,3 +603,23 @@ button:disabled {
         gap: 0;
     }
 }
+.challenge-info {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.badge-category, .badge-difficulty {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    color: #333;
+}
+
+.badge-difficulty {
+    text-transform: uppercase;
+}

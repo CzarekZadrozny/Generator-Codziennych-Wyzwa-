@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <!-- NOWY NAGŁÓWEK -->
+    <!--  NAGŁÓWEK -->
     <header class="site-header">
         <div class="header-container">
             <div class="logo">
@@ -39,6 +39,12 @@
             </div>
 
             <div id="challenge-display" class="hidden">
+                <div class="challenge-info">
+                    <!-- Nowe elementy na kategorię i trudność -->
+                    <span id="challenge-category" class="badge-category" id="challenge-category">Kategoria</span>
+                    <span id="challenge-difficulty" class="badge-difficulty"id="challenge-difficulty">Trudność</span>
+                </div>
+
                 <div class="challenge-box">
                     <p id="challenge-text">Twoje wyzwanie pojawi się tutaj...</p>
                 </div>
@@ -54,6 +60,8 @@
         <section class="history-section">
             <button id="toggle-history" class="btn-secondary" onclick="pokazHistorie()">Pokaż historię</button>
             <div id="history-list-container" class="hidden">
+                <br>
+                <button id="clear-history" class="btn-secondary" onclick="wyczyscHistorie()">Wyczyść historię</button>
                 <h3>Ukończone wyzwania:</h3>
                 <ul id="history-list">
                 </ul>
@@ -61,6 +69,7 @@
         </section>
     </div>
 
+    <!-- STOPKA -->
     <footer class="site-footer">
         <div class="footer-banner">
             <h2 class="banner-title">Take good design today</h2>
