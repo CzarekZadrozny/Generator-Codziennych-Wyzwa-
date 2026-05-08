@@ -24,7 +24,7 @@ const wyzwania = [
  document.addEventListener("DOMContentLoaded", function() {
     if (window.location.href.includes("index.html")) {
         console.log("Strona załadowana");
-        sprawdzenieDnia();
+        //sprawdzenieDnia();
         sprawdzCzyZalogowany();
     }
 });
@@ -45,7 +45,7 @@ const wyzwania = [
         const dzisiaj = new Date().toLocaleDateString();
         localStorage.setItem("ostatnieLosowanie", dzisiaj);
 
-        document.getElementById("draw-btn").disabled = true;
+        //document.getElementById("draw-btn").disabled = true;
 
         localStorage.setItem("aktualneWyzwanie", JSON.stringify(wyzwanie));    
     }
@@ -69,7 +69,7 @@ const wyzwania = [
         historia.push(wpis);
         localStorage.setItem("historiaWyzwan", JSON.stringify(historia));
 
-        document.getElementById("complete-btn").disabled = true;
+       // document.getElementById("complete-btn").disabled = true;
 
         localStorage.setItem("czyUkonczoneDzisiaj", new Date().toLocaleDateString());
         localStorage.removeItem("aktualneWyzwanie");
